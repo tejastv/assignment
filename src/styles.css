@@ -1,0 +1,39 @@
+/* You can add global styles to this file, and also import other style files */
+.appFooter{
+    height: 50px;
+    background: #f8f9fa;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+}
+
+.appFooter p {
+    margin: 15px auto;
+}
+
+.imgepreview {
+    width: 200px;
+    margin: 20px auto 0;
+}
+
+.imgepreview img{
+    width: 100%;
+}
+
+.logoutClass{
+    margin: 0;
+    width: 100%;
+    text-align: right;
+    cursor: pointer;
+}
+
+.filenameClass{
+    margin: 10px 0;
+}
+
+.msg{
+    text-align: center;
+    margin-top: 35px;
+}

@@ -1,0 +1,115 @@
+<div class="card" style="width: 28rem;margin: 50px auto 50px;">
+    <div class="card-body">
+        <h5 class="card-title text-center">Register</h5>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" formControlName="firstName" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+                <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                    <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                    <div *ngIf="f.firstName.errors.maxlength">First Name max 30 characters</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" formControlName="lastName" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                    <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                    <div *ngIf="f.lastName.errors.maxlength">Last Name max 30 characters</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="surname">Surname</label>
+                <input type="text" formControlName="surname" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.surname.errors }" />
+                <div *ngIf="submitted && f.surname.errors" class="invalid-feedback">
+                    <div *ngIf="f.surname.errors.required">Surname is required</div>
+                    <div *ngIf="f.surname.errors.maxlength">Surname max 30 characters</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="mobilenum">Mobile</label>
+                <input type="text" formControlName="mobilenum" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.mobilenum.errors }" />
+                <div *ngIf="submitted && f.mobilenum.errors" class="invalid-feedback">
+                    <div *ngIf="f.mobilenum.errors.required">Mobile is required</div>
+                    <div *ngIf="f.mobilenum.errors.maxlength">Mobile should be 10 digitxw</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="emailid">Email</label>
+                <input type="text" formControlName="emailid" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.emailid.errors }" />
+                <div *ngIf="submitted && f.emailid.errors" class="invalid-feedback">
+                    <div *ngIf="f.emailid.errors.required">Email is required</div>
+                    <div *ngIf="f.emailid.errors.email">Email is invalid</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="propic">Profile picture</label>
+                <div class="custom-file">
+                    <input type="file" (change)="fileChangeEvent($event)" formControlName="propic" [ngClass]="{ 'is-invalid': submitted && f.propic.errors }" class="custom-file-input" id="customFile">
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                </div>
+                <div class="imgepreview" *ngIf="croppedImage">
+                    <img [src]="croppedImage"/>
+                </div>
+                <div *ngIf="submitted && f.propic.errors" class="invalid-feedback">
+                    <div *ngIf="f.propic.errors.required">Profile picture is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="address">Address</label>
+                <textarea class="form-control" formControlName="address" id="address"
+                    [ngClass]="{ 'is-invalid': submitted && f.address.errors }" rows="3"></textarea>
+                <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                    <div *ngIf="f.address.errors.required">Address is required</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="dob">Date of Birth</label>
+                <input type="text" [maxDate]="maxDate" [ngClass]="{ 'is-invalid': submitted && f.dob.errors }"
+                    formControlName="dob" class="form-control" bsDatepicker>
+                <div *ngIf="submitted && f.dob.errors" class="invalid-feedback">
+                    <div *ngIf="f.dob.errors.required">Date is required</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button [disabled]="loading" class="btn btn-primary">Register</button>
+                <img *ngIf="loading"
+                    src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                <a [routerLink]="['/auth/signin']" class="btn btn-link">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div bsModal #template="bs-modal" [config]="{ backdrop: 'static' }" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Crop Image</h4>
+            </div>
+            <div class="modal-body">
+                <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true"
+                    [containWithinAspectRatio]="containWithinAspectRatio" [aspectRatio]="4 / 3" [resizeToWidth]="256"
+                    [cropperMinWidth]="128" [onlyScaleDown]="true" [roundCropper]="false"
+                    [canvasRotation]="canvasRotation" [transform]="transform" [alignImage]="'left'"
+                    [style.display]="showCropper ? null : 'none'" format="png" (imageCropped)="imageCropped($event)"
+                    (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady($event)"
+                    (loadImageFailed)="loadImageFailed()"></image-cropper>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closeMd();">Close</button>
+                <button type="button" class="btn btn-primary" (click)="saveChange();">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- <h2>Register</h2> -->

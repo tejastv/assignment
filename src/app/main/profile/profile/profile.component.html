@@ -1,0 +1,75 @@
+<div class="container emp-profile" *ngIf="userObj != undefined">
+    <form method="post">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-img">
+                    <img [src]="imgUsr"/>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="profile-head">
+                    <h5>
+                        {{userObj?.firstName}} {{userObj?.lastName}}
+                    </h5>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                                aria-controls="home" aria-selected="true">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-8">
+                <div class="tab-content profile-tab" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Surname</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{userObj?.surname}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Mobile</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p><a href="tel:{{userObj?.mobilenum}}">{{userObj?.mobilenum}}</a></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Email</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p><a href="mailto:{{userObj?.emailid}}">{{userObj?.emailid}}</a></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Address</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{userObj?.address}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Date of Birth</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{userObj?.dob | date}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<p *ngIf="userObj == undefined" class="msg">User is not registred through register form!</p>
